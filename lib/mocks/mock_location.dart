@@ -107,4 +107,8 @@ class MockLocation extends Location {
   static List<Location> FetchAll() {
     return MockLocation.locations;
   }
+
+  static Location fetch(int index) {
+    return MockLocation.locations[index];
+  }
 }

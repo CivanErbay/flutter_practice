@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'models/location.dart';
 import 'styles.dart';
+import 'mocks/mock_location.dart';
 
 // Stateless widgets are effectively a class
 // Extends means here: We take everything StatelessWidget offers and we adding our custom logic, functions, variables etc to it
@@ -24,13 +25,16 @@ import 'styles.dart';
 // STEP 4: There is many ways to implement an image but we are going to use a container here because to stretch it as much as it can,
 // but also to constrain its height to a specific amount of pixels
 class LocationDetail extends StatelessWidget {
-  final Location location;
+  final int locationId;
 
   //Constructor: Here we are specifing the location meaning whatever we pass in the parameter is going to be stored in the (final) location variable
-  LocationDetail(this.location);
+  LocationDetail(this.locationId);
 
   @override
   Widget build(BuildContext context) {
+    // In reality we here some sort of loading spinner until the location is loaded
+    // Be careful what you do in build because it can slow down your app
+    var location = MockLocation.fetch(locationId);
     return Scaffold(
         appBar: AppBar(
           title: Text(location.name, style: Styles.navBarTitle),
@@ -82,7 +86,14 @@ class LocationDetail extends StatelessWidget {
     return Container(
       constraints: BoxConstraints.tightFor(height: height),
       // Image.network is a "named" constructor
-      child: Image.network(url, fit: BoxFit.fitWidth),
+      child: Image.network(
+        url,
+        fit: BoxFit.fitWidth,
+        errorBuilder: (context, error, stackTrace) {
+          // Return an error widget if image loading fails
+          return Icon(Icons.error);
+        },
+      ),
     );
   }
 }
