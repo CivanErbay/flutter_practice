@@ -20,7 +20,7 @@ class MockLocation extends Location {
         LocationFact(
             title: 'How to Get There',
             text:
-                'You can reach Cairo by flying into Cairo International Airport, which serves as a major hub for both domestic and international flights.')
+                'You can reach Cairo by flying into Cairo International Airport, which serves as a major hub for both domestic and international flights.You can reach Cairo by flying into Cairo International Airport, which serves as a major hub for both domestic and international flights.You can reach Cairo by flying into Cairo International Airport, which serves as a major hub for both domestic and international flights.You can reach Cairo by flying into Cairo International Airport, which serves as a major hub for both domestic and international flights.You can reach Cairo by flying into Cairo International Airport, which serves as a major hub for both domestic and international flights.')
       ],
     ),
     Location(

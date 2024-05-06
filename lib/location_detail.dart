@@ -39,16 +39,13 @@ class LocationDetail extends StatelessWidget {
         appBar: AppBar(
           title: Text(location.name, style: Styles.navBarTitle),
         ),
-        body: Column(
+        // SingleChildScrollView is a scrollable widget that only contains one child widget which allows to scroll the page if the content might overflow
+        body: SingleChildScrollView(
+            child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: _renderBody(context, location),
-          // children: [
-          //   _section("One", Colors.yellow),
-          //   _section("Two", Colors.green),
-          //   _section("Three", Colors.red),
-          // ]),
-        ));
+        )));
   }
 
   List<Widget> _renderBody(BuildContext context, Location location) {

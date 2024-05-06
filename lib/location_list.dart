@@ -61,7 +61,7 @@ class LocationList extends StatelessWidget {
   Widget _itemTitle(Location location) {
     //return Text(location.name, style: Styles.textDefault);
     // String interpolaton if you want to add something to a string
-    return Text('leading string --> ${location.name}',
+    return Text('${location.name}',
         style: Styles.textDefault);
   }
 }
