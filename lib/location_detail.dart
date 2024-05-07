@@ -24,17 +24,48 @@ import 'mocks/mock_location.dart';
 
 // STEP 4: There is many ways to implement an image but we are going to use a container here because to stretch it as much as it can,
 // but also to constrain its height to a specific amount of pixels
-class LocationDetail extends StatelessWidget {
+
+class LocationDetail extends StatefulWidget {
   final int locationId;
 
-  //Constructor: Here we are specifing the location meaning whatever we pass in the parameter is going to be stored in the (final) location variable
   LocationDetail(this.locationId);
+  //By the time this executes we need to know what the locationId is, thats why we use the constructor in the state and we gonna save it in a member thats final here
+  @override
+  createState() => _LocationDetailState(locationId);
+}
+
+class _LocationDetailState extends State<LocationDetail> {
+  final int locationId;
+  //This is a way to retain the location that gets loaded in the constructor as a blanked out new instance
+  Location location = Location.blank();
+
+  //Constructor: Here we are specifing the location meaning whatever we pass in the parameter is going to be stored in the (final) location variable
+  // UPDATE: This class still needs a constructor because when the state is first loaded/the class instance
+  // is created it needs to know straight away what the location ID it needs to load is.
+  _LocationDetailState(this.locationId);
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    final location = await Location.fetchById(locationId);
+
+    //if we call setState it will call out build function automatically. But we cant call our build method here if our widget is not yet mounted.
+    if (mounted) {
+      setState(() {
+        this.location = location;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     // In reality we here some sort of loading spinner until the location is loaded
     // Be careful what you do in build because it can slow down your app
-    var location = MockLocation.fetch(locationId);
+    // var location = MockLocation.fetch(locationId);
     return Scaffold(
         appBar: AppBar(
           title: Text(location.name, style: Styles.navBarTitle),
@@ -47,6 +78,10 @@ class LocationDetail extends StatelessWidget {
           children: _renderBody(context, location),
         )));
   }
+
+  // loadData() async {
+  //   final location =
+  // }
 
   List<Widget> _renderBody(BuildContext context, Location location) {
     var result = <Widget>[];

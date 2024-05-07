@@ -4,11 +4,16 @@ import '../models/location_fact.dart';
 // We are going to extend Location Class meaning we use all the properties and function but we are going to extend it by fetchAny Method
 // Angle-brackets we define a list of locations facts <LocationFact>[]
 class MockLocation extends Location {
-  MockLocation({required super.name, required super.url, required super.facts});
+  MockLocation(
+      {required super.id,
+      required super.name,
+      required super.url,
+      required super.facts});
 
   //static because we dont want to create an instance of this class and its final because we dont want to reassign it
   static final List<Location> locations = [
     Location(
+      id: 0,
       name: "Cairo",
       url:
           'https://upload.wikimedia.org/wikipedia/commons/1/11/Cairo%2C_Egypt_%2846845880222%29.jpg',
@@ -24,6 +29,7 @@ class MockLocation extends Location {
       ],
     ),
     Location(
+      id: 1,
       name: "Paris",
       url:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Paris_-_Eiffelturm_und_Marsfeld2.jpg/1280px-Paris_-_Eiffelturm_und_Marsfeld2.jpg',
@@ -39,6 +45,7 @@ class MockLocation extends Location {
       ],
     ),
     Location(
+      id: 2,
       name: "Tokyo",
       url:
           'https://upload.wikimedia.org/wikipedia/commons/0/06/Tokyo_Tower_and_Tokyo_Sky_Tree_-_night_view_from_Sumida_River_%28HDR%29.jpg',
@@ -54,6 +61,7 @@ class MockLocation extends Location {
       ],
     ),
     Location(
+      id: 3,
       name: "Rome",
       url:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Roma_BW_2013-05-05_15-40-34_DxO.jpg/1280px-Roma_BW_2013-05-05_15-40-34_DxO.jpg',
@@ -69,6 +77,7 @@ class MockLocation extends Location {
       ],
     ),
     Location(
+      id: 4,
       name: "New York City",
       url:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Manhattan%2C_New_York_City%2C_New_York%2C_United_States.jpg/1280px-Manhattan%2C_New_York_City%2C_New_York%2C_United_States.jpg',
@@ -84,6 +93,7 @@ class MockLocation extends Location {
       ],
     ),
     Location(
+      id: 5,
       name: "Sydney",
       url:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Sydney_Opera_House_-_Dec_2008.jpg/1280px-Sydney_Opera_House_-_Dec_2008.jpg',
